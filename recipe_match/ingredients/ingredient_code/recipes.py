@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import mysql.connector as sql
+#from . import data_cleanser
 
 # Rough Mind Map to Follow:
 
@@ -92,11 +93,22 @@ class recipes:
 
     def compared(self,minimum):
         count=0
+        list=[]
         for i in range(len(recipes.key_list)):
             if len(recipes.comp_list[i])>minimum:
-                print(recipes.key_list[i],recipes.comp_list[i] )
+                data=recipes.key_list[i],recipes.comp_list[i]
+                print(data)
                 count+=1
-        return None
+                # list.append(list(data))
+                dict1={"dishes":recipes.key_list[i], "Common_Ingredients" : recipes.comp_list[i]}
+                print("DICT:")
+                list.append(dict1)
+        print(list)
+        recipes.comp_list=[]
+        recipes.links=[]
+        recipes.ingredients=[]
+        recipes.key_list=[]
+        return list
     
     
     def sql_upload(self,host,user,password):
@@ -123,7 +135,7 @@ class recipes:
 
     
 
-# ob = recipes("https://www.budgetbytes.com/category/recipes/pasta/chicken-pasta/","")
+# ob = recipes("`https://www.budgetbytes.com/category/recipes/pasta/chicken-pasta/`","")
 # dish_list= ob.dish_gen()
 
 # print("DISH LISTS: ")

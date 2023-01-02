@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <h1>INGREDIENT_PROTOTYPE LAYOUT</h1>
+
+        <form action="/ingredients/Form<url><min>/" method="post">
+            {% csrf_token %}
+
+            <legend>Form</legend>
+                <br><br>    
+                Enter URL:
+                <br>
+                <input name="url">
+                <br><br>
+                Enter number of comparisons to make:
+                <br>    
+                <input name="min">
+                <br><br>
+                <input type="submit" value="submit">
+
+        </form>
+
+    </body>
+</html>
