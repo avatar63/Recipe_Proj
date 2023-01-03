@@ -1,24 +1,19 @@
-<html>
-    <body>
-        
+{% extends 'base_template.html' %}
+
+        {% block basic_form %}
         <h1>DATA PRESENTATION PROTOTYPE:</h1>
-        
         <table>
-            {% for x in final_data %}    
-            <tr>
-                <td>
-                {{x.dishes}}
-                </td>
-                <td>
-                {{x.Common_Ingredients}}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        
-
-        
-       
+                {% for x in final_data %}    
+                <tr>
+                    <td>
+                    {{x.dishes}}
+                    </td>
+                    <td>
+                    {{x.Common_Ingredients}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
     </body>
 </html>

@@ -1,17 +1,22 @@
 from django.shortcuts import render
 from django.template import loader
+import urllib.parse
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .ingredient_code.recipes import *
 
 # Create your views here.
 
 def index(request):
-    template = loader.get_template('index.html')
+    if request.method == "POST":
+        data = str(request.POST['url'])
+        data2= int(request.POST['min'])
+        data=urllib.parse.quote(data,safe='')
+        return HttpResponseRedirect("output/"+data+"/"+data2)
 
-    return HttpResponse(template.render({},request))
+    return render(request,'index.html')
 
-def output(request,url='https://www.budgetbytes.com/category/recipes/meat/chicken/chicken-thighs/',min=2):
+def output(request,url,min):
     ob = recipes(url,'')
     ob.dish_gen()
     dish_url=ob.url_gen()
@@ -23,6 +28,5 @@ def output(request,url='https://www.budgetbytes.com/category/recipes/meat/chicke
     context ={
         'final_data' : final_data,
     }
-    template=loader.get_template('output.html')
-    return HttpResponse(template.render(context,request))
-    #return url, min
+    # return "Hello World!" 
+    return render(request,'output.html',)
