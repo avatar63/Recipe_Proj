@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import mysql.connector as sql
+import data_cleanser
 
 # Rough Mind Map to Follow:
 
@@ -69,7 +70,9 @@ class recipes:
             ing_list.append(temp)
             recipes.ingredients.append(temp)
             temp=[]
-        print("RECIPES LIST")
+        print("INGREDIENTS LIST")
+        recipes.ingredients=data_cleanser.brackets_or(recipes.ingredients)
+        print("SHOULD BE CLEAN !!!"+"\n"+recipes.ingredients)
         return recipes.ingredients
 
     def comparison_analysis(self):
@@ -86,7 +89,6 @@ class recipes:
                 recipes.comp_list.append(comparison)
                 recipes.key_list.append(compared_dishes)
                 compared_dishes=[]
-        print("COMPARISON DATA")
         return recipes.comp_list
 
 
@@ -94,7 +96,7 @@ class recipes:
         count=0
         for i in range(len(recipes.key_list)):
             if len(recipes.comp_list[i])>minimum:
-                print(recipes.key_list[i],recipes.comp_list[i] )
+                recipes.key_list[i],recipes.comp_list[i]
                 count+=1
         return None
     
@@ -123,19 +125,20 @@ class recipes:
 
     
 
-# ob = recipes("https://www.budgetbytes.com/category/recipes/pasta/chicken-pasta/","")
-# dish_list= ob.dish_gen()
+ob = recipes("https://www.budgetbytes.com/category/recipes/pasta/chicken-pasta/","")
+dish_list= ob.dish_gen()
 
-# print("DISH LISTS: ")
-# print(dish_list)
+print("DISH LISTS: ")
+print(dish_list)
 
-# dish_list=ob.url_gen()
+dish_list=ob.url_gen()
 
-# print(ob.dish_recipe(dish_list))
+ob.dish_recipe(dish_list)
 
 
 
-# print(ob.comparison_analysis())
+ob.comparison_analysis()
 
+print(ob.ingredients)
 
 #ob.sql_upload("localhost", "root", "Namita@76")

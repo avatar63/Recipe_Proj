@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import mysql.connector as sql
-#from . import data_cleanser
+from .cleaner import Cleaner
+
 
 # Rough Mind Map to Follow:
 
@@ -70,7 +71,10 @@ class recipes:
             ing_list.append(temp)
             recipes.ingredients.append(temp)
             temp=[]
-        print("RECIPES LIST")
+        print("INGREDIENTS LIST")
+        a=recipes.ingredients
+        recipes.ingredients=Cleaner.brackets_or(a)
+        
         return recipes.ingredients
 
     def comparison_analysis(self):
@@ -87,27 +91,19 @@ class recipes:
                 recipes.comp_list.append(comparison)
                 recipes.key_list.append(compared_dishes)
                 compared_dishes=[]
-        print("COMPARISON DATA")
         return recipes.comp_list
 
 
     def compared(self,minimum):
         count=0
+        dict={}
         list=[]
         for i in range(len(recipes.key_list)):
             if len(recipes.comp_list[i])>minimum:
-                data=recipes.key_list[i],recipes.comp_list[i]
-                print(data)
+                dict.update({"dishes":recipes.key_list[i],"Common_Ingredients" :recipes.comp_list[i]})
                 count+=1
-                # list.append(list(data))
-                dict1={"dishes":recipes.key_list[i], "Common_Ingredients" : recipes.comp_list[i]}
-                print("DICT:")
-                list.append(dict1)
-        print(list)
-        recipes.comp_list=[]
-        recipes.links=[]
-        recipes.ingredients=[]
-        recipes.key_list=[]
+            list.append(dict)
+            dict={}
         return list
     
     
@@ -135,7 +131,7 @@ class recipes:
 
     
 
-# ob = recipes("`https://www.budgetbytes.com/category/recipes/pasta/chicken-pasta/`","")
+# ob = recipes("https://www.budgetbytes.com/category/recipes/pasta/chicken-pasta/","")
 # dish_list= ob.dish_gen()
 
 # print("DISH LISTS: ")
@@ -143,11 +139,12 @@ class recipes:
 
 # dish_list=ob.url_gen()
 
-# print(ob.dish_recipe(dish_list))
+# ob.dish_recipe(dish_list)
 
 
 
-# print(ob.comparison_analysis())
+# ob.comparison_analysis()
 
+# print(ob.ingredients)
 
-#ob.sql_upload("localhost", "root", "Namita@76")
+# ob.sql_upload("localhost", "root", "Namita@76")
