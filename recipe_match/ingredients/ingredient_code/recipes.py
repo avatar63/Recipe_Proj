@@ -146,5 +146,3 @@ class recipes:
 # ob.comparison_analysis()
 
 # print(ob.ingredients)
-
-# ob.sql_upload("localhost", "root", "Namita@76")

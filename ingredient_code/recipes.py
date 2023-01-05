@@ -140,5 +140,3 @@ ob.dish_recipe(dish_list)
 ob.comparison_analysis()
 
 print(ob.ingredients)
-
-#ob.sql_upload("localhost", "root", "Namita@76")
