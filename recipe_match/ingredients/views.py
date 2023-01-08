@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.template import loader
+from .models import temp_url
 import urllib.parse
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,6 +11,9 @@ from .ingredient_code.recipes import *
 def index(request):
     if request.method == "POST":
         data = str(request.POST['url'])
+        
+        # temp=temp_url(data)
+        # temp.save()
         data2= int(request.POST['min'])
         data=urllib.parse.quote(data,safe='')
         return HttpResponseRedirect("output/"+data+"/"+str(data2))

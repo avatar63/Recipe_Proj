@@ -32,7 +32,10 @@ class recipes:
         #self.category = categorwhaty
         #url is the input given by the user
     def dish_gen(self):
-
+        recipes.links=[]
+        recipes.ingredients=[]
+        recipes.key_list=[]
+        recipes.comp_list=[]
         print("generating...")
         data = requests.get(self.url).text
         soup = bs(data,'lxml')
@@ -99,7 +102,7 @@ class recipes:
         dict={}
         list=[]
         for i in range(len(recipes.key_list)):
-            if len(recipes.comp_list[i])>minimum:
+            if len(recipes.comp_list[i])>=minimum:
                 dict.update({"dishes":recipes.key_list[i],"Common_Ingredients" :recipes.comp_list[i]})
                 count+=1
             list.append(dict)
