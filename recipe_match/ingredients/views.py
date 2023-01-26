@@ -6,14 +6,14 @@ import urllib.parse
 from django.http import HttpResponse, HttpResponseRedirect
 from .ingredient_code.recipes import *
 
-# Create your views here.
+#Create your views here.
 
 def index(request):
     if request.method == "POST":
         data = str(request.POST['url'])
         
-        # temp=temp_url(data)
-        # temp.save()
+        #temp=temp_url(data)
+        #temp.save()
         data2= int(request.POST['min'])
         data=urllib.parse.quote(data,safe='')
         return HttpResponseRedirect("output/"+data+"/"+str(data2))
@@ -32,9 +32,8 @@ def output(request,url,min):
     ob.dish_recipe(dish_url)
     ob.comparison_analysis()
     dict_data=ob.compared(int(min))
-    final_data=dict_data #a list of dictionaries 
+    final_data=dict_data # list of dictionaries 
     context ={
         'final_data' : final_data,
     }
-    # return "Hello World!" 
     return render(request,'output.html',context)
