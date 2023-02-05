@@ -1,0 +1,14 @@
+{% extends 'base_template.html' %}
+
+{% block basic_form %}
+
+<form action="" method="post">
+    {% csrf_token %}
+
+        {{form}}
+        
+        <button type="submit">submit</button>
+</form>
+
+
+{% endblock %}

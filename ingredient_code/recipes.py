@@ -28,8 +28,6 @@ class recipes:
     def __init__(self,url, dish_list):
         self.url = url
         self.dish_list = dish_list
-        #self.category = categorwhaty
-        #url is the input given by the user
     def dish_gen(self):
 
         print("generating...")
@@ -45,6 +43,15 @@ class recipes:
         
         return(self.dish_list)
     
+    def name_dish(self,dish_urls):
+        for url in dish_urls:
+            data = requests.get(url).text
+            soup = bs(data,"lxml")
+            block = soup.find('h1').text
+            self.dish_list.append(block)
+            print(block)
+
+        return None
     def url_gen(self):
         data = requests.get(self.url).text
         soup = bs(data,'lxml')

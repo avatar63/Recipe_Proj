@@ -59,6 +59,19 @@ class recipes:
             recipes.links.append(link.get('href'))        
         return recipes.links
     
+    def name_dish(self,dish_urls):
+        self.dish_list=[]
+        recipes.links=[]
+        recipes.ingredients=[]
+        recipes.key_list=[]
+        recipes.comp_list=[]
+        for url in dish_urls:
+            data = requests.get(url).text
+            soup = bs(data,"lxml")
+            block = soup.find('h1').text
+            self.dish_list.append(block)
+            print(block)
+
     def dish_recipe(self,dish_urls):
         ing_list=[]
         temp=[]
@@ -95,7 +108,8 @@ class recipes:
                 recipes.key_list.append(compared_dishes)
                 compared_dishes=[]
         return recipes.comp_list
-
+    def clean(self):
+        Cleaner.clean()
 
     def compared(self,minimum):
         count=0
