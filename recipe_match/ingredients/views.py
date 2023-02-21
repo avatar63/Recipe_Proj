@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,authenticate,get_user
 from django.contrib.auth.models import User, Permission
 from django.http import HttpResponse, HttpResponseRedirect
-from .ingredient_code.recipes import *
+from .spoon.main import recipe_parser
 #USERMODEL, DJANGO
 
 
@@ -46,50 +46,22 @@ def index(request):
     if request.method == "POST":
         data = dict(request.POST)
         print(data)
-        data = data["url"]
-        temp=[]
-        for i in data:
-            mod_url=i.replace("/","_")   
-            temp.append(mod_url) 
-        data = "*".join(temp)
+        data = data["ingredients"]
         print(data)
-        #data = str(request.POST['url']).replace("/","_")
-        data2= int(request.POST['min'])
-        return HttpResponseRedirect("output/"+data+"/"+str(data2))
+        temp=[]
+        for i in data:    
+            temp.append(i) 
+        data = "*".join(temp)
+        return HttpResponseRedirect("/ingredients/output/"+str(data))
 
     return render(request,'index.html',{"form":form})
 
-def output(request,url,min):
-    temp_list=url.split("*")
-    url_list=[]
-    for url in temp_list:
-        url_list.append(url.replace("_","/"))
-    print(url_list)
-    ob = recipes(url,'')
-    # ob.dish_gen()
-    # dish_url=ob.url_gen()
-    ob.name_dish(url_list)
-    ob.dish_recipe(url_list)
-    ob.comparison_analysis()
-    dict_data=ob.compared(int(min))
-    final_data=dict_data # list of dictionaries 
-    context ={
-        'final_data' : final_data,
-    }
-    return render(request,'output.html',context)
-
-def output_more(request,url,min):
-    
-    url=url.replace("_","/")
-    url=url+"page/2"
-    ob = recipes(url,'')
-    ob.dish_gen()
-    dish_url=ob.url_gen()
-
-    ob.dish_recipe(dish_url)
-    ob.comparison_analysis()
-    dict_data=ob.compared(int(min))
-    final_data=dict_data # list of dictionaries 
+def output(request,ingredients):
+    temp_list=ingredients.split("*")
+    print(temp_list)
+    data=",".join(temp_list)
+    print(data)
+    final_data = ingredients
     context ={
         'final_data' : final_data,
     }

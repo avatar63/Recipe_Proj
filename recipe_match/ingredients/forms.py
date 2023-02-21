@@ -11,9 +11,7 @@ class Login(forms.ModelForm):
 
 
 class Index(forms.Form):
-    url=forms.CharField(max_length=200)
-    min=forms.CharField(max_length=3)    
-    
+    ingredients=forms.CharField(max_length=200)
     # class Meta:
     #     fields=["url","min"]
     # def __init__(self,*args,**kwargs):

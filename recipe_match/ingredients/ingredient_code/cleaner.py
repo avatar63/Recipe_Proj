@@ -56,8 +56,8 @@ class Cleaner():
                     pass
                 elif ", " in dish:
                     print(dish)
-                    a=re.sub("*\(.*?,.*?\)","", dish)
-                    print(a)
+                    # a=re.sub("*\(.*?,.*?\)","", dish)
+                    # print(a)
         return None
 
 
