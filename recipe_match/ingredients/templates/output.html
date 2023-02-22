@@ -3,22 +3,34 @@
         {% block basic_form %}
         <h1>DATA PRESENTATION PROTOTYPE:</h1>
         <table>
-                {% for x in final_data %}    
+                   
+                <th>Title</th>
+                <th>Number of Mentioned Ingredients Used</th>
+                <th>Missed Ingredients</th>
+                <th>Used Ingredients</th>
+                {% for x in final_data %} 
                 <tr>
                     <td>
                     {{x.title}}
                     </td>
-                {% endfor %}
-                {% for y in instructions %}                 
                     <td>
-                    {{y.steps}}
+                    {{x.usedIngredientCount}}
                     </td>
-                {% endfor %}
+                    <td>
+                        {{x.missedIngredients}}
+                    </td>
+                    <td>
+                        {{x.usedIngredients}}
+                    </td>
+                     <td>
+                        <a href="#">Know More</a>
+                    </td>
+                    
                 </tr>
+                {% endfor %}
                 
             </table>
-            <a href="output/output_more/output_more">Show More</a>
-        {% endblock %}
+                {% endblock %}
         
     </body>
 </html>

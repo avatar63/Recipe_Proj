@@ -62,15 +62,11 @@ def output(request,ingredients):
     data=",".join(temp_list)
     print(data)
     ob = recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
-    dishes = ob.recipes_search(data)
-    
-    final_data = dishes
-
-    instructions = ob.recipe_instruction(dishes[0]["id"])
-    print(instructions)
+    data_dict=ob.recipes_search(data)
+    final_data=ob.final_data(data_dict)
+    # print(final_data)
     context ={
         'final_data' : final_data,
-        'instructions': instructions
     }
     return render(request,'output.html',context)
 
