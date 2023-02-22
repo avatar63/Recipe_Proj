@@ -6,13 +6,16 @@
                 {% for x in final_data %}    
                 <tr>
                     <td>
-                    {{x.dishes}}
+                    {{x.title}}
                     </td>
-                    <td>
-                    {{x.Common_Ingredients}}
-                    </td>
-                </tr>
                 {% endfor %}
+                {% for y in instructions %}                 
+                    <td>
+                    {{y.steps}}
+                    </td>
+                {% endfor %}
+                </tr>
+                
             </table>
             <a href="output/output_more/output_more">Show More</a>
         {% endblock %}
