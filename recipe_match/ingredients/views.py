@@ -46,29 +46,42 @@ def index(request):
     if request.method == "POST":
         data = dict(request.POST)
         print(data)
-        data = data["ingredients"]
-        print(data)
+        data1 = data["ingredients"]
+        data2 = data["minimum_recipes"][0]
+        print(data2)
         temp=[]
-        for i in data:    
+        for i in data1:    
             temp.append(i) 
-        data = "*".join(temp)
-        return HttpResponseRedirect("/ingredients/output/"+str(data))
+        data1 = "~".join(temp)
+        return HttpResponseRedirect("/ingredients/output/"+str(data1)+"/"+(data2))
 
     return render(request,'index.html',{"form":form})
 
-def output(request,ingredients):
-    temp_list=ingredients.split("*")
+def output(request,ingredients,minimum_recipes):
+    temp_list=ingredients.split("~")
     print(temp_list)
     data=",".join(temp_list)
     print(data)
     ob = recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
-    data_dict=ob.recipes_search(data)
+    data_dict=ob.recipes_search(data,minimum_recipes)
     final_data=ob.final_data(data_dict)
     # print(final_data)
     context ={
         'final_data' : final_data,
     }
     return render(request,'output.html',context)
+
+
+def know_more(request,id):
+    ob=recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
+    dish_data = ob.recipeinformation(id)
+    instructions = dish_data["analyzedInstructions"]
+    print("THIS IS KNOW MORE PAGE")
+    context = {
+        'dish_data':dish_data,
+        'instructions':instructions,
+    }
+    return render(request,'know_more.html',context)
 
 
 

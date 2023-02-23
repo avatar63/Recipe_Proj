@@ -1,0 +1,25 @@
+{% extends 'base_template.html' %}
+
+        {% block basic_form %}
+            <h1>{{dish_data.title}}</h1>
+            <table>
+                
+                <tr>
+                    <!-- {{dish_data.cookingMinutes}} -->
+                    <h3>Instructions to cook</h3>
+                    <br>
+                    {% for k in instructions %}
+
+                        {{k}}<br>
+
+                    {% endfor %}
+
+                    <a href="{{dish_data.sourceUrl}}">Go to original website recipe</a>
+                    <img src="{{dish_data.image}}">
+
+                </tr>
+
+                
+            </table>
+
+        {% endblock %}
