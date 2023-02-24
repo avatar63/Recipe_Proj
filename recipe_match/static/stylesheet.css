@@ -1,0 +1,58 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background-color: rgb(98, 151, 167);
+    margin: 10% 20%;
+}
+
+nav {
+    display: flexbox;
+     
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  background-color: #333;
+}
+
+nav ul li{  
+    list-style-type: none;
+    float:left;
+    
+}
+
+nav ul li a{  
+    text-decoration: none;
+    color: #dddddd;
+    display: block;
+    padding: 8px;
+    
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+}
+
+#DeleteRow{
+    background-color: grey;
+    border-radius: 5px;
+    width:50%;
+}
+
+#RowAdder{
+    background-color: grey;
+    border-radius: 5px;
+    width:50%;
+}
+
+#bttn{
+    background-color: grey;
+    border-radius: 5px;
+    width:50%;
+}
