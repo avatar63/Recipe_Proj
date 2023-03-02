@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.template import loader
 import urllib.parse
-from .forms import Index,Login
+from .forms import Index#,Login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,authenticate,get_user
 from django.contrib.auth.models import User, Permission
@@ -20,25 +20,11 @@ def register(request):
             password=form.cleaned_data.get("password1")
             user=authenticate(username=username,password=password)
             login(request,user)
-            return redirect("loginpage")
+            return redirect("login")
     else:
         form=UserCreationForm()
     return render(request,'register.html',{"form":form})
             
-def loginpage(request):
-    if request.method=="POST":
-        username=request.POST.get("username")
-        password=request.POST.get("password")
-        user=authenticate(username=username,password=password)
-        if user:
-            return redirect("index")
-
-        else:
-            return HttpResponse("Login Failed.")
-
-    else:
-        form = Login()    
-    return (render(request,'loginpage.html',{"form":form}))
 
 def index(request):
     form=Index()
@@ -83,8 +69,10 @@ def know_more(request,id):
     }
     return render(request,'know_more.html',context)
 
+def profile(request):
+    name = request.user
 
-
-
-
-
+    context = {
+        "name":name
+    }
+    return render(request,"registration/profile.html",context=context)
