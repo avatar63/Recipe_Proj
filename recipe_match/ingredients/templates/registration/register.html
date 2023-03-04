@@ -1,11 +1,12 @@
 {% extends 'base_template.html' %}
 {% block basic_form %}
 
-<form action="" method="post">
+<form action="" method="" style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
+
     {% csrf_token %}
 
         {{form}}
-        
+
         <button type="submit">submit</button>
 </form>
 

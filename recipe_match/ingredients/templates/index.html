@@ -1,6 +1,6 @@
 {% extends 'base_template.html' %}
 <html>
-    
+
     <body>
         <h1>INGREDIENT_PROTOTYPE LAYOUT</h1>
         Enter urls you would like to run a comparison of
@@ -10,13 +10,13 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
         </script>
     </head>
-    
 
-        <div style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center;">
+
+        <div style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
                <div>
-                
+
                     <form  action="" method="post">
-                        
+
                         Enter Ingredients: <br><br>
                         <div id="newinput">
                                 <button id="RowAdder" type="button"
@@ -27,7 +27,7 @@
                                 <br><br>
                             </div>
                         <div class="">
-                            
+
                             <div class="col-lg-12">
                                 <div id="row">
                                     <div class="input-group m-3">
@@ -40,19 +40,19 @@
                                                 <i class="bi bi-trash"></i>
                                                 Delete Ingredient
                                             </button>
-                                            
+
                                         </div>
                                         <br>
-                                        
-                                        
-                                        
-                                            
+
+
+
+
                                     </div>
-                            
-                                    
+
+
                                 </div>
-            
-                                
+
+
                         </div>
                         Minimum Number of Recipes(Upto 100):<br>
                         <input type="number"
@@ -60,9 +60,9 @@
                         <br>
                     <button id = "bttn"type="submit">submit</button>
                     </form>
-                </div>        
+                </div>
             <script type="text/javascript">
-        
+
                 $("#RowAdder").click(function () {
                     newRowAdd =
                     '<div id="row"> <div class="input-group m-3">' +
@@ -71,10 +71,10 @@
                     '<button class="btn btn-danger" id="DeleteRow" type="button">' +
                     '<i class="bi bi-trash"></i> Delete Ingredient</button> </div> <br>' +
                     ' </div> </div>';
-        
+
                     $('#newinput').append(newRowAdd);
                 });
-        
+
                 $("body").on("click", "#DeleteRow", function () {
                     $(this).parents("#row").remove();
                 })
@@ -83,7 +83,7 @@
 
 
 
-            
+
             </form>
         </div>
         {% endblock %}

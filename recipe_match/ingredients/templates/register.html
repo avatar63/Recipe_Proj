@@ -2,12 +2,15 @@
 
 {% block basic_form %}
 
-<form action="" method="post">
+<form action="" method="post"
+style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
+    <div>
     {% csrf_token %}
 
         {{form}}
-        
+
         <button type="submit">submit</button>
+    </div>
 </form>
 
 

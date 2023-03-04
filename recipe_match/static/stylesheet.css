@@ -7,31 +7,26 @@ body{
     margin: 10% 20%;
 }
 
-nav {
-    display: flexbox;
-     
-}
-
 nav ul{
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    border-radius: 15px;
     overflow: hidden;
-  background-color: #333;
+    background-color: #333;
+    border-radius: 15px;
 }
 
-nav ul li{  
+nav ul li{
     list-style-type: none;
     float:left;
-    
+
 }
 
-nav ul li a{  
+nav ul li a{
     text-decoration: none;
     color: #dddddd;
     display: block;
-    padding: 8px;
-    
+    padding: 15px;
+
 }
 
 .form{
@@ -55,4 +50,18 @@ nav ul li a{
     background-color: grey;
     border-radius: 5px;
     width:50%;
+}
+
+
+#main{
+    padding: 8%;
+    color: red;
+}
+
+input#id_username{
+    color: #333;
+}
+
+form{
+    color: red;
 }

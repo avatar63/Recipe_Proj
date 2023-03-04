@@ -6,19 +6,22 @@
         </title>
         <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
     </head>
-    
+
     <body>
-        <div id = "nav">
+        <div id = "nav" >
             <nav>
-                <ul>
-                    <li><a href="/ingredients">home</a></li>
-                    <li><a href="/accounts/register">register</a></li>
-                    <li><a href="/accounts/login">login</a></li>
-                    <li><a href="/accounts/profile">profile</a></li>
+                <ul style="border-radius: 15px;" >
+                    <li ><a href="/ingredients" style="padding: 15px;"> home</a></li>
+                    <li><a href="/accounts/register" style="padding: 15px;">register</a></li>
+                    <li><a href="/accounts/login" style="padding: 15px;">login</a></li>
+                    <li><a href="/accounts/profile" style="padding: 15px;">profile</a></li>
                 </ul>
             </nav>
+            <div>
+                Welcome {{name}}
+            </div>
         </div>
-        {% block basic_form %}            
+        {% block basic_form %}
         {% endblock %}
     </body>
 </html>
