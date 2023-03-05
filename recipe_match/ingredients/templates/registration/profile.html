@@ -1,6 +1,21 @@
+{% extends 'base_template.html' %}
 <html>
     <body>
-        Logged in as {{name}}
+            {% block basic_form %}
+
+            <form action="" method="post"
+style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
+
+                Logged in as {{name}}
+            </form>
+
+
+
+            {% endblock %}
+
+
+
+
         <a href="/accounts/logout">logout</a>
 
     </body>

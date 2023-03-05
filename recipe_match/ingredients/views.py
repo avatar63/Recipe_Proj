@@ -28,54 +28,71 @@ def register(request):
 
 def index(request):
     form=Index()
-    print(request.user)
-    if request.method == "POST":
-        data = dict(request.POST)
-        print(data)
-        data1 = data["ingredients"]
-        data2 = data["minimum_recipes"][0]
-        print(data2)
-        temp=[]
-        for i in data1:
-            temp.append(i)
-        data1 = "~".join(temp)
-        return HttpResponseRedirect("/ingredients/output/"+str(data1)+"/"+(data2))
+    if str(request.user)!="AnonymousUser":
+        name = request.user
 
-    return render(request,'index.html',{"form":form})
+        if request.method == "POST":
+            data = dict(request.POST)
+            print(data)
+            data1 = data["ingredients"]
+            data2 = data["minimum_recipes"][0]
+            print(data2)
+            temp=[]
+            for i in data1:
+                temp.append(i)
+            data1 = "~".join(temp)
+            return HttpResponseRedirect("/ingredients/output/"+str(data1)+"/"+(data2))
+        context = {
+            'name' : name,
+            "form":form
+        }
+        return render(request,'index.html',context=context)
+    else:
+        return HttpResponseRedirect("/accounts/login")
 
 def output(request,ingredients,minimum_recipes):
-    temp_list=ingredients.split("~")
-    print(temp_list)
-    data=",".join(temp_list)
-    print(data)
-    ob = recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
-    data_dict=ob.recipes_search(data,minimum_recipes)
-    final_data=ob.final_data(data_dict)
-    # print(final_data)
-    name = request.user
-    context ={
-        'final_data' : final_data,
-        'name' : name,
-    }
-    return render(request,'output.html',context)
+    if str(request.user)!="AnonymousUser":
+        temp_list=ingredients.split("~")
+        print(temp_list)
+        data=",".join(temp_list)
+        print(data)
+        ob = recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
+        data_dict=ob.recipes_search(data,minimum_recipes)
+        final_data=ob.final_data(data_dict)
+        # print(final_data)
+        name = request.user
+        context ={
+            'final_data' : final_data,
+            'name' : name,
+        }
+        return render(request,'output.html',context)
+    else:
+        return HttpResponseRedirect("/accounts/login")
 
 
 def know_more(request,id):
-    ob=recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
-    dish_data = ob.recipeinformation(id)
-    instructions = dish_data["analyzedInstructions"]
-    name = request.user
-    context = {
-        'dish_data':dish_data,
-        'instructions':instructions,
-        'name':name
-    }
-    return render(request,'know_more.html',context)
+    if str(request.user)!="AnonymousUser":
+        ob=recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
+        dish_data = ob.recipeinformation(id)
+        instructions = dish_data["analyzedInstructions"]
+        name = request.user
+        context = {
+            'dish_data':dish_data,
+            'instructions':instructions,
+            'name':name
+        }
+        return render(request,'know_more.html',context)
+    else:
+        return HttpResponseRedirect("/accounts/login")
+
 
 def profile(request):
-    name = request.user
+    if str(request.user)!="AnonymousUser":
+        name = request.user
+        context = {
+            "name":name
+        }
+        return render(request,"registration/profile.html",context=context)
+    else:
+        return HttpResponseRedirect("/accounts/login")
 
-    context = {
-        "name":name
-    }
-    return render(request,"registration/profile.html",context=context)
