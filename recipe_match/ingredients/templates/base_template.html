@@ -10,15 +10,20 @@
     <body>
         <div id = "nav" >
             <nav>
-                <ul style="border-radius: 15px;" >
-                    <li ><a href="/ingredients" style="padding: 15px;"> home</a></li>
+                <ul id = "nav items" style="list-style: none;justify-content: space-evenly;
+                align-items: center;
+                display: flex;
+                list-style-type:none;
+                font-size: large;">
+                    <li ><a href="/ingredients" style="padding: 15px;">tool</a></li>
                     <li><a href="/accounts/register" style="padding: 15px;">register</a></li>
                     <li><a href="/accounts/login" style="padding: 15px;">login</a></li>
                     <li><a href="/accounts/profile" style="padding: 15px;">profile</a></li>
+                    <li>Logged in as  {{name}}</li>
                 </ul>
             </nav>
-            <div>
-                Logged in as  {{name}}
+        <div>
+
             </div>
         </div>
         {% block basic_form %}

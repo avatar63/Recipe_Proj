@@ -7,19 +7,35 @@ body{
     margin: 10% 20%;
 }
 
-nav ul{
+div#nav{
+    /* display: flex; */
+    justify-content:space-between;
+    background-color: #333;
+    border-radius: 15px;
+}
+
+
+div nav ul#navitems{
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    list-style-type:none;
+    font-size: large;
+    padding-top: 2%;}
+
+/* nav ul{
     list-style-type: none;
     border-radius: 15px;
     overflow: hidden;
     background-color: #333;
     border-radius: 15px;
-}
+} */
 
-nav ul li{
+/* nav ul li{
     list-style-type: none;
     float:left;
 
-}
+} */
 
 nav ul li a{
     text-decoration: none;
@@ -27,6 +43,10 @@ nav ul li a{
     display: block;
     padding: 15px;
 
+}
+a{
+    text-decoration: none;
+    color: #dddddd;
 }
 
 .form{
@@ -52,16 +72,6 @@ nav ul li a{
     width:50%;
 }
 
-
-#main{
-    padding: 8%;
-    color: red;
-}
-
 input#id_username{
     color: #333;
-}
-
-form{
-    color: red;
 }

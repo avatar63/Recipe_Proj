@@ -7,9 +7,8 @@ from django.contrib.auth import login,authenticate,get_user
 from django.contrib.auth.models import User, Permission
 from django.http import HttpResponse, HttpResponseRedirect
 from .spoon.main import recipe_parser
+from .models import user_queries
 #USERMODEL, DJANGO
-
-
 #Create your views here.
 def register(request):
     if request.method=="POST":
@@ -28,30 +27,46 @@ def register(request):
 
 def index(request):
     form=Index()
-    if str(request.user)!="AnonymousUser":
+    if request.user.is_anonymous:
+        return HttpResponseRedirect("/accounts/login")
+
+    else:
         name = request.user
 
         if request.method == "POST":
             data = dict(request.POST)
-            print(data)
             data1 = data["ingredients"]
             data2 = data["minimum_recipes"][0]
-            print(data2)
             temp=[]
             for i in data1:
                 temp.append(i)
             data1 = "~".join(temp)
-            return HttpResponseRedirect("/ingredients/output/"+str(data1)+"/"+(data2))
+
+            try:
+                if data["save"][0] == "on":
+                    print("WE MADE PROGRESS")
+                    print(type(request.user.id))
+                    print(type(data1))
+                    print(type(data2))
+                    query_data = user_queries(user_id=request.user.id, ingredients=data1, recipe_count=data2)
+                    query_data.save()
+                    print("test")
+                    return HttpResponseRedirect("/ingredients/output/"+str(data1)+"/"+(data2))
+            except:
+                return HttpResponseRedirect("/ingredients/output/"+str(data1)+"/"+(data2))
+
         context = {
             'name' : name,
             "form":form
         }
         return render(request,'index.html',context=context)
-    else:
-        return HttpResponseRedirect("/accounts/login")
+
 
 def output(request,ingredients,minimum_recipes):
-    if str(request.user)!="AnonymousUser":
+    if request.user.is_anonymous:
+        return HttpResponseRedirect("/accounts/login")
+
+    else:
         temp_list=ingredients.split("~")
         print(temp_list)
         data=",".join(temp_list)
@@ -66,12 +81,12 @@ def output(request,ingredients,minimum_recipes):
             'name' : name,
         }
         return render(request,'output.html',context)
-    else:
-        return HttpResponseRedirect("/accounts/login")
 
 
 def know_more(request,id):
-    if str(request.user)!="AnonymousUser":
+    if request.user.is_anonymous:
+        return HttpResponseRedirect("/accounts/login")
+    else:
         ob=recipe_parser("fbb7be320f9842a9ad38be90a1e8e288")
         dish_data = ob.recipeinformation(id)
         instructions = dish_data["analyzedInstructions"]
@@ -82,17 +97,22 @@ def know_more(request,id):
             'name':name
         }
         return render(request,'know_more.html',context)
-    else:
-        return HttpResponseRedirect("/accounts/login")
 
 
 def profile(request):
-    if str(request.user)!="AnonymousUser":
+    if request.user.is_anonymous:
+        return HttpResponseRedirect("/accounts/login")
+
+    else:
         name = request.user
+        userdata = user_queries.objects.all().filter(user_id=request.user.id).values()
+        print(userdata)
         context = {
-            "name":name
+            "name":name,
+            "userdata":userdata
         }
         return render(request,"registration/profile.html",context=context)
-    else:
-        return HttpResponseRedirect("/accounts/login")
+
+
+
 

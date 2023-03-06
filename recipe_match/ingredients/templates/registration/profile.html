@@ -4,19 +4,34 @@
             {% block basic_form %}
 
             <form action="" method="post"
-style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
+style=" margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;text-decoration: none;">
 
                 Logged in as {{name}}
+                <br>
+                <hr>
+                {% for i in userdata %}
+                    {{i.ingredients}}
+                    <br>
+                    {{i.recipe_count}}
+                    <br>
+                    {%csrf_token%}
+                    <a href="/ingredients/output/{{i.ingredients}}/{{i.recipe_count}}" target="_blank" style="text-decoration: none;color:#6d6666;">
+                        Go To Query
+                    </a>
+                    <a>
+                        Modify Query
+                    </a>
+                    <br><hr>
+                {% endfor %}
+
             </form>
-
-
-
+            <a href="/accounts/logout">logout</a>
             {% endblock %}
 
 
 
 
-        <a href="/accounts/logout">logout</a>
+
 
     </body>
 </html>
