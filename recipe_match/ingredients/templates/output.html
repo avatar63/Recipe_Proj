@@ -3,17 +3,20 @@
         {% block basic_form %}
         <h1>DATA PRESENTATION PROTOTYPE:</h1>
         <table>
-                   
+
                 <th>Title</th>
                 <th>Number of Mentioned Ingredients Used</th>
                 <th>Missed Ingredients</th>
                 <th>Used Ingredients</th>
-                {% for x in final_data %} 
-                <tr>
+                {% for x in final_data %}
+                <tr style="height:38px">
                     <td>
-                    {{x.title}}
+                        <a href="/ingredients/food/{{x.id}}">
+                            {{x.title}}
+                        </a>
                     </td>
-                    <td>
+                    </td>
+                    <td style="text-align: center;">
                     {{x.usedIngredientCount}}
                     </td>
                     <td>
@@ -22,17 +25,12 @@
                     <td>
                         {{x.usedIngredients}}
                     </td>
-                     <td>
-                        <a href="/ingredients/food/{{x.id}}">
-                        <button class="bttn">Know More</button>
-                        </a>
-                    </td>
-                    
                 </tr>
+            </a>
                 {% endfor %}
-                
+
             </table>
                 {% endblock %}
-        
+
     </body>
 </html>

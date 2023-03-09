@@ -1,77 +1,102 @@
 *{
-    margin:0;
-    padding:0;
+    padding: 0;
+    margin: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 body{
-    background-color: rgb(98, 151, 167);
-    margin: 10% 20%;
+    background-color: #2E4F4F;
 }
 
-div#nav{
-    /* display: flex; */
-    justify-content:space-between;
-    background-color: #333;
+div#main{
+    padding: 8% 20%;
+
+}
+
+div#bracket{
+    padding:5%;
+    background-color: #3f6868;
+    border-radius: 25px;
+
+}
+
+div#navbar{
+    background-color: #2C3333;
     border-radius: 15px;
 }
 
-
-div nav ul#navitems{
-    justify-content: space-evenly;
-    align-items: center;
-    display: flex;
-    list-style-type:none;
-    font-size: large;
-    padding-top: 2%;}
-
-/* nav ul{
+div#navbar div#nav-left ul {
     list-style-type: none;
-    border-radius: 15px;
+    margin: 0;
     overflow: hidden;
-    background-color: #333;
-    border-radius: 15px;
-} */
+  }
 
-/* nav ul li{
-    list-style-type: none;
-    float:left;
+  div#navbar div#nav-left ul li {
+    float: left;
+    text-align: center;
+  }
 
-} */
-
-nav ul li a{
-    text-decoration: none;
-    color: #dddddd;
+  div#navbar div#nav-left ul li a {
     display: block;
-    padding: 15px;
-
-}
-a{
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    color: #dddddd;
+  }
+
+  div#navbar div#nav-right ul li{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+  }
+
+  div#navbar div#nav-left ul li a:hover {
+    background-color: #111;
+  }
+
+  div#navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+  }
+
+
+  div#form{
+    background-color: #2C3333;
+    padding: 5%;
+    border-radius: 20px;
+    width: 35%;
+
+  }
+
+  div#How-To{
+    background-color: #2C3333;
+    padding: 5%;
+    border-radius: 20px;
+    width: 35%;
+  }
+
+
+div#index{
+    display: flex;
+    justify-content: space-between;
+    padding: 5% 0;
 }
 
-.form{
+form#register_f{
+    padding:5% 3%;
     display: flex;
     justify-content: center;
+    text-align: center;
+    background-color: 2C3333;
+    border-radius: 15px;
+    margin-top: 5%;
 }
 
-#DeleteRow{
-    background-color: grey;
-    border-radius: 5px;
-    width:50%;
-}
+div#helptext{
+  padding-left:5%;
 
-#RowAdder{
-    background-color: grey;
-    border-radius: 5px;
-    width:50%;
-}
-
-#bttn{
-    background-color: grey;
-    border-radius: 5px;
-    width:50%;
-}
-
-input#id_username{
-    color: #333;
 }

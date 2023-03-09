@@ -114,5 +114,12 @@ def profile(request):
         return render(request,"registration/profile.html",context=context)
 
 
+# def modified_query(request):
+#     if request.user.is_anonymous:
+#         return HttpResponseRedirect("/accounts/login")
+#     else:
+#         name = request.user
+#     return render(request,)
+
 
 

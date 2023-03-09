@@ -3,13 +3,13 @@
     <body>
             {% block basic_form %}
 
-            <form action="" method="post"
-style=" margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;text-decoration: none;">
-
-                Logged in as {{name}}
+            <form action="" method="post" id="register_f">
+                <div style="width:80%;">
+                <h1>{{name}}'s Previous Searches</h1> <a href="/accounts/logout" style="text-decoration: none;color:#6d6666;">Logout of Ingredient Matcher </a>
                 <br>
                 <hr>
                 {% for i in userdata %}
+                <div style="padding:5%">
                     {{i.ingredients}}
                     <br>
                     {{i.recipe_count}}
@@ -18,14 +18,15 @@ style=" margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-
                     <a href="/ingredients/output/{{i.ingredients}}/{{i.recipe_count}}" target="_blank" style="text-decoration: none;color:#6d6666;">
                         Go To Query
                     </a>
-                    <a>
+                    <!-- <a href="#" target="_blank" style="text-decoration: none;color:#6d6666;">
                         Modify Query
-                    </a>
+                    </a> -->
                     <br><hr>
+                </div>
                 {% endfor %}
-
+            </div>
             </form>
-            <a href="/accounts/logout">logout</a>
+
             {% endblock %}
 
 

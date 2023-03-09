@@ -1,17 +1,62 @@
 {% extends 'base_template.html' %}
-
 {% block basic_form %}
 
-<form action="" method="post"
-style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
-    <div>
+<form action="" method="" id="register_f">
+
     {% csrf_token %}
+    <div id="register">
 
-        {{form}}
+        <label for="id_username">Username:</label>
 
-        <button type="submit">submit</button>
+
+          <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username">
+
+            <br>
+            <div class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>
+
+
+
+
+
+        <br>
+        <br>
+        <label for="id_password1">Password:</label>
+
+
+          <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+
+            <br>
+          <div id="helptext">
+              <ul>
+              <li>Your password can't be too similar to your other personal information.</li>
+              <li>Your password must contain at least 8 characters.</li>
+              <li>Your password can't be a commonly used password.</li>
+              <li>Your password can't be entirely numeric.</li>
+            </ul>
+          </div>
+
+
+
+
+
+
+        <label for="id_password2" style="width: min-content;display: inline-block;">Confirm Password:</label>
+
+
+          <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+
+            <br>
+            <span class="helptext">Enter the same password as before, for verification.</span>
+            <br>
+
+
+
+
+
+            <div style="display: flex; justify-content: center;">
+                <button type="submit">submit</button>
+              </div>
     </div>
 </form>
-
 
 {% endblock %}

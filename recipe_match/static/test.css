@@ -1,0 +1,75 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background-color: rgb(98, 146, 160);
+    margin: 10% 20%;
+}
+
+div#nav{
+    display: flex;
+    justify-content:space-between;
+    background-color: #333;
+    border-radius: 15px;
+}
+ div nav ul#navitems{
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    list-style-type:none;
+    font-size: large;
+    padding-top: 2%;}
+
+ nav ul{
+    list-style-type: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 15px;
+}
+
+ nav ul li{
+    list-style-type: none;
+    float:left;
+
+}
+
+ nav ul li a{
+    text-decoration: none;
+    color: #dddddd;
+    display: block;
+    padding: 15px;
+
+}
+a{
+    text-decoration: none;
+    color: #dddddd;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+}
+
+#DeleteRow{
+    background-color: grey;
+    border-radius: 5px;
+    width:50%;
+}
+
+#RowAdder{
+    background-color: grey;
+    border-radius: 5px;
+    width:50%;
+}
+
+#bttn{
+    background-color: grey;
+    border-radius: 5px;
+    width:50%;
+}
+
+input#id_username{
+    color: #333;
+}

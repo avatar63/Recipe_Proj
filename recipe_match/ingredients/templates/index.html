@@ -4,98 +4,98 @@
     <body>
         <h1>INGREDIENT_PROTOTYPE LAYOUT</h1>
         Enter urls you would like to run a comparison of
-        {% block basic_form %}
-        <form action="" method="post">
-        {% csrf_token %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        <head>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js">
         </script>
     </head>
-
-
-        <div style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
-               <div>
-
-                    <form  action="" method="post">
-
-                        Enter Ingredients: <br><br>
-                        <div id="newinput">
-                                <button id="RowAdder" type="button"
-                                    class="btn btn-dark">
-                                    <span class="bi bi-plus-square-dotted">
-                                    </span> Add Ingredient
-                                </button>
-                                <br><br>
-                            </div>
-                        <div class="">
-
-                            <div class="col-lg-12">
-                                <div id="row">
-                                    <div class="input-group m-3">
-                                        <div class="input-group-prepend">
-                                            <input type="text"
-                                            class="form-control m-input"
-                                            name="ingredients">
-                                            <button class="btn btn-danger"
-                                                id="DeleteRow" type="button">
-                                                <i class="bi bi-trash"></i>
-                                                Delete Ingredient
-                                            </button>
-
-                                        </div>
-                                        <br>
-
-
-
-
-                                    </div>
-
-
-                                </div>
-
+    <form action="" method="post">
+            {% block basic_form %}
+                <div id="index">
+                    <div id="How-To">
+                        <div id="instructions">
+                                <b>How To Use:</b>
+                                <br>
+                                <li>Enter a list of ingredients you have in your kitchen to ingredient matcher.</li>
+                                <li>Note: You can also enter broadterms  such as 'spices'.</li>
+                                <li>You may enter as many ingredients as you would like.</li>
+                                <li>More the ingeredients, better and more useful the results.</li>
+                                <li>Enter the minimum number of results you would like, upto 100.</li>
 
                         </div>
-                        Minimum Number of Recipes(Upto 100):<br>
-                        <input type="number"
-                        name="minimum_recipes">
-                        <br>
-                        <br>
-                            Would you like to save this query?
-                        <br>
-                        <input type="checkbox" name="save">
+                    </div>
+                    <div id="form">
+                        <form  action="" method="post">
+                            {% csrf_token %}
+                            Enter Ingredients: <br><br>
+                            <div id="newinput">
+                                    <button id="RowAdder" type="button"
+                                        class="add-more btn btn-primary">
+                                        <span class="bi bi-plus-square-dotted">
+                                        </span> Add Ingredient
+                                    </button>
+                                    <br><br>
+                                </div>
+                            <div class="">
+
+                                <div class="col-lg-12">
+                                    <div id="row">
+                                        <div class="input-group m-3">
+                                            <div class="input-group-prepend">
+                                                <input type="text"
+                                                class="form-control m-input"
+                                                name="ingredients"
+                                                placeholder="Enter Ingredient">
+                                                <button class="btn btn-danger"
+                                                    id="DeleteRow" type="button">
+                                                    <i class="bi bi-trash"></i>
+                                                    Delete Ingredient
+                                                </button>
+
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                            </div>
+                            Minimum Number of Recipes(Upto 100):<br>
+                            <input type="number"
+                            name="minimum_recipes">
+                            <br>
+                            <br>
+                            <input type="checkbox" name="save">   Save this search
+                            <br>
 
 
-                    <button id = "bttn"type="submit">submit</button>
+
+                        <button id = "bttn"type="submit">Search</button>
 
 
-                    </form>
-                </div>
-            <script type="text/javascript">
+                        </form>
+                    </div>
+                <script type="text/javascript">
 
-                $("#RowAdder").click(function () {
-                    newRowAdd =
-                    '<div id="row"> <div class="input-group m-3">' +
-                    '<div class="input-group-prepend">' +
-                    '<input type="text" class="form-control m-input" name="ingredients">'+
-                    '<button class="btn btn-danger" id="DeleteRow" type="button">' +
-                    '<i class="bi bi-trash"></i> Delete Ingredient</button> </div> <br>' +
-                    ' </div> </div>';
 
-                    $('#newinput').append(newRowAdd);
+                $(document).ready(function(){
+                    $("#RowAdder").click(function(){
+                        var newRowAdd =
+                        '<div id="row"> <div class="input-group m-3">' +
+                        '<div class="input-group-prepend">' +
+                        '<input type="text" class="form-control m-input" name="ingredients" placeholder="Enter Ingredient">'+
+                        '<button class="btn btn-danger" id="DeleteRow" type="button">' +
+                        '<i class="bi bi-trash"></i> Delete Ingredient</button> </div> <br>' +
+                        ' </div> </div>';
+                        alert("Pressed Add");
+                        $('#newinput').append(newRowAdd);
+                    });
+
+                    $("body").on("click", "#DeleteRow", function () {
+                        $(this).parents("#row").remove();
+                    });
                 });
-
-                $("body").on("click", "#DeleteRow", function () {
-                    $(this).parents("#row").remove();
-                })
-            </script>
-
-
-
-
-
-            </form>
-        </div>
-        {% endblock %}
+                </script>
+                </form>
+            </div>
+                {% endblock %}
 
     </body>
 </html>
-

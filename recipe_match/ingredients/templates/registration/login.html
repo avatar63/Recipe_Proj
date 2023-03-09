@@ -2,13 +2,21 @@
 
 {% block basic_form %}
 
-<form action="" method="post"
-style="display: flex;justify-content: center; margin-top: 2%; padding:5%; background-color: #333; color:#dddddd; text-align: center; border-radius: 20px;">
+<form action="" method="post"id="register_f">
+  <div id=>
     You aren't logged in! Log in or register to use Ingredient Matcher!!!
+    <br>
     {% csrf_token %}
-        {{form}}
+        <label for="id_username">Username:</label>
 
-        <button type="submit">submit</button>
+
+      <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+      <br><br>
+    <label for="id_password">Password:</label>
+
+      <input type="password" name="password" autocomplete="current-password" required="" id="id_password"><br>
+      <button type="submit"> submit</button>
+  </div>
 </form>
 
 
