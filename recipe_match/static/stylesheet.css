@@ -86,12 +86,12 @@ div#index{
     padding: 5% 0;
 }
 
-form#register_f{
+#register_f{
     padding:5% 3%;
     display: flex;
     justify-content: center;
     text-align: center;
-    background-color: 2C3333;
+    background-color: #2C3333;
     border-radius: 15px;
     margin-top: 5%;
 }
@@ -99,4 +99,25 @@ form#register_f{
 div#helptext{
   padding-left:5%;
 
+}
+table {
+  border-collapse: collapse;
+}
+td {
+  position: relative;
+}
+tr:hover, tr:focus-within {
+  background:#111;
+  outline: none;
+  border-radius: 25px;
+}
+td > a:first-child {
+  display: flex;
+  padding: 18px;
+  text-decoration: none;
+  color: inherit;
+  z-index: 0;
+}
+td > a:first-child:focus {
+  outline: 0;
 }

@@ -1,7 +1,12 @@
 {% extends 'base_template.html' %}
 
         {% block basic_form %}
-        <h1>DATA PRESENTATION PROTOTYPE:</h1>
+
+        <div id="register_f">
+        <div>
+            <h1>Recipe List for {{name}}</h1><br>
+            <hr>
+            <br>
         <table>
 
                 <th>Title</th>
@@ -15,22 +20,32 @@
                             {{x.title}}
                         </a>
                     </td>
-                    </td>
+
                     <td style="text-align: center;">
+                    <a href="/ingredients/food/{{x.id}}">
                     {{x.usedIngredientCount}}
+                    </a>
                     </td>
                     <td>
+                        <a href="/ingredients/food/{{x.id}}">
                         {{x.missedIngredients}}
+                        </a>
                     </td>
                     <td>
+                        <a href="/ingredients/food/{{x.id}}">
                         {{x.usedIngredients}}
+                        </a>
                     </td>
                 </tr>
             </a>
                 {% endfor %}
-
-            </table>
+            </div>
+        </table>
+    </div>
                 {% endblock %}
+
+
+
 
     </body>
 </html>
