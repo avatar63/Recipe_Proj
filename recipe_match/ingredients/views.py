@@ -13,15 +13,22 @@ from .models import user_queries
 def register(request):
     if request.method=="POST":
         form=UserCreationForm(request.POST)
+        print("test")
         if form.is_valid():
             form.save()
             username=form.cleaned_data.get("username")
             password=form.cleaned_data.get("password1")
+            print(username)
+            print(password)
             user=authenticate(username=username,password=password)
             login(request,user)
             return redirect("login")
+        else:
+            print("error")
     else:
         form=UserCreationForm()
+    print("test1")
+
     return render(request,'register.html',{"form":form})
 
 
@@ -106,7 +113,10 @@ def profile(request):
     else:
         name = request.user
         userdata = user_queries.objects.all().filter(user_id=request.user.id).values()
-        print(userdata)
+        userdata=list(userdata)
+        # print(userdata)
+        userdata.reverse()
+
         context = {
             "name":name,
             "userdata":userdata
